@@ -22,8 +22,6 @@ jobs:
           cache: npm
       - name: Install Packages
         run: npm ci
-      - name: Generate EdgeQL Query Builder
-        run: npx edgeql-js
       - name: Run ESLint
         run: npm run ciLint
 
