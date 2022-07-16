@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "target": "esnext",
+    "allowJs": true,
+    "checkJs": true
+  },
+  "files": [
+    "jest.config.ts",
+  ],
+  "include": [
+    "scripts/**/*",
+    "src/**/*",
+    "__tests__/**/*",
+  ]
+}

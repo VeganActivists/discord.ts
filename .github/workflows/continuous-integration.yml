@@ -1,0 +1,47 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  Linting:
+    name: ESLint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b #v3.0.2
+      - name: Setup Node
+        uses: actions/setup-node@eeb10cff27034e7acf239c5d29f62154018672fd #v3.2.0
+        with:
+          node-version: '18.5.0'
+          cache: npm
+      - name: Install Packages
+        run: npm ci
+      - name: Generate EdgeQL Query Builder
+        run: npx edgeql-js
+      - name: Run ESLint
+        run: npm run ciLint
+
+  Building:
+    name: ESBuild
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b #v3.0.2
+        with:
+          submodules: true
+      - name: Setup Node
+        uses: actions/setup-node@eeb10cff27034e7acf239c5d29f62154018672fd #v3.2.0
+        with:
+          node-version: '18.5.0'
+          cache: npm
+      - name: Install Packages
+        run: npm ci
+      - name: ESBuild
+        run: npm run cleanBuild
+

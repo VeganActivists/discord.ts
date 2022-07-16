@@ -1,0 +1,59 @@
+image: node:18.5.0-alpine3.15
+
+variables:
+  # When using dind, it's wise to use the overlayfs driver for
+  # improved performance.
+  DOCKER_DRIVER: overlay2
+  SAST_EXPERIMENTAL_FEATURES: "true"
+  SAST_EXCLUDED_ANALYZERS: "semgrep"
+  DOCKER_HOST: tcp://docker:2376
+  DOCKER_TLS_VERIFY: 1
+  DOCKER_TLS_CERTDIR: "/certs"
+  DOCKER_CERT_PATH: "$DOCKER_TLS_CERTDIR/client"
+
+stages:
+  - init
+  - lint
+  - test
+
+cache:
+  key:
+    files:
+      - package-lock.json
+  paths:
+    - node_modules/
+    - .npm/
+
+before_script:
+  - echo "Pipeline ID = $CI_PIPELINE_ID"
+  - echo "Project name = $CI_PROJECT_NAME"
+  - echo "Build ref = $CI_BUILD_REF_NAME"
+  - npm ci --cache .npm --prefer-offline
+
+initialize-npm:
+  stage: init
+  script:
+    - npm ci --cache .npm --prefer-offline
+
+eslint:
+  stage: lint
+  script:
+    - npx eslint . --ext ts --format gitlab --ignore-path .gitignore
+  artifacts:
+    when: always
+    reports:
+      codequality: gl-codequality.json
+
+jest-junit:
+  stage: test
+  script:
+    - npx jest --ci --reporters=default --reporters=jest-junit --passWithNoTests
+  artifacts:
+    expire_in: 1 month
+    when: always
+    reports:
+      junit:
+        - junit.xml
+
+include:
+  - template: Security/SAST.gitlab-ci.yml

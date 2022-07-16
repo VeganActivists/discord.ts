@@ -1,0 +1,20 @@
+/* SPDX-License-Identifier: MIT
+Vegan Activists (VeganActivists@proton.me) */
+
+import { NODE_DEVELOPMENT } from '../../config.js';
+
+enum TestRoles {
+  NONVEGAN = '996969703593484357',
+  NONVEGAN_MOD = '996969703673184258',
+  UNVERIFIED_VEGAN = '996969703610265632',
+  VEGAN = '996969703610265633',
+}
+
+enum Roles {
+  NONVEGAN = '993502256177614909',
+  NONVEGAN_MOD = '993335480278061098',
+  UNVERIFIED_VEGAN = '993568879030829117',
+  VEGAN = '993062436477341717',
+}
+
+export default process.env['NODE_ENV'] === NODE_DEVELOPMENT ? TestRoles : Roles;

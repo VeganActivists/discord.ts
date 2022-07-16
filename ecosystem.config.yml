@@ -1,0 +1,11 @@
+# SPDX-License-Identifier: MIT
+# Vegan Activists (VeganActivists@proton.me)
+
+apps:
+  - script: dist/index.js
+    name: VA
+    instances: 1
+    watch: false
+    autorestart: true
+    env:
+      NODE_ENV: production

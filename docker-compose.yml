@@ -1,0 +1,13 @@
+# SPDX-License-Identifier: MIT
+# Vegan Activists (VeganActivists@proton.me)
+
+version: "3.8"
+services:
+  bot:
+    build: .
+    hostname: vabot
+    ports:
+      - 443:443
+      - 50000:65535
+    volumes:
+      - .:/vabot/opt/build

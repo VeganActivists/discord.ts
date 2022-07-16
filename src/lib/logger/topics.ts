@@ -1,0 +1,18 @@
+/* SPDX-License-Identifier: MIT
+Vegan Activists (VeganActivists@proton.me) */
+
+enum TOPICS {
+  APOLLO_CLIENT = 'APOLLO_CLIENT',
+  APOLLO_SERVER = 'APOLLO_SERVER',
+  DISCORD = 'DISCORD',
+  DISCORD_SHARD = 'DISCORD_SHARD',
+  METRICS = 'METRICS',
+  NEXUS = 'NEXUS',
+  NODE = 'NODE',
+  POLL = 'POLL',
+  RPC = 'RPC',
+  SAPPHIRE = 'SAPPHIRE',
+  UNHANDLED_REJECTION = 'UNHANDLED_REJECTION',
+}
+
+export default TOPICS;

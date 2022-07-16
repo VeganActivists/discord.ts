@@ -1,0 +1,38 @@
+# SPDX-License-Identifier: MIT
+# Vegan Activists (VeganActivists@proton.me)
+
+# Environment variables
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+__tests__
+.github
+.gitlab
+.husky
+.vscode
+build
+coverage
+dist
+docs
+.editorconfig
+.env.example
+.eslintignore
+.eslintrc.yml
+.gitattributes
+.gitignore
+.gitlab-ci.yml.prettierrc.yml
+.prettierignore
+.prettierrc.yml
+changelog.md
+contributing.md
+docker-compose.yml
+Dockerfile
+ecosystem.config.yml
+jest.config.jest
+license.md
+README.md
+vabot.code-workspace
+vabot-ts.code-workspace

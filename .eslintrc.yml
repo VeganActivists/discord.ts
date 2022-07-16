@@ -1,0 +1,167 @@
+# SPDX-License-Identifier: MIT
+# Vegan Activists (VeganActivists@proton.me)
+
+env:
+  node: true
+  es2021: true
+extends:
+  - eslint:recommended
+  - plugin:import/errors
+  - plugin:import/warnings
+  - plugin:@typescript-eslint/eslint-recommended
+  - plugin:@typescript-eslint/recommended
+  - plugin:@typescript-eslint/recommended-requiring-type-checking
+  - plugin:import/typescript
+  - plugin:jest/recommended
+  - plugin:jest/style
+  - plugin:jest-formatting/strict
+  - plugin:listeners/recommended
+  - plugin:node/recommended
+  - plugin:promise/recommended
+  - plugin:regexp/recommended
+  - plugin:sort-export-all/recommended
+  - plugin:ternary/recommended
+  - plugin:total-functions/recommended
+  - plugin:typescript-sort-keys/recommended
+  - plugin:unicorn/recommended
+  # AirBNB Should Remain Near Last
+  - airbnb-base
+  - airbnb-typescript/base
+  # Functional After AirBNB
+  - plugin:functional/external-recommended
+  - plugin:functional/recommended
+  - plugin:functional/stylistic
+  # Prettier Should Remain Last
+  - prettier
+  - plugin:prettier/recommended
+parser: '@typescript-eslint/parser'
+parserOptions:
+  ecmaVersion: 13
+  sourceType: module
+  project:
+    - ./tsconfig.eslint.json
+plugins:
+  - '@typescript-eslint'
+  - import
+  - functional
+  - function-name
+  - header
+  - jest
+  - jest-formatting
+  - listeners
+  - new-with-error
+  - node
+  - no-constructor-bind
+  - no-default-error
+  - no-secrets
+  # - prefer-arrow-functions
+  - promise
+  - regexp
+  - sort-class-members
+  - sort-export-all
+  - ternary
+  - total-functions
+  - typescript-sort-keys
+  - tsdoc
+  - unicorn
+  - write-good-comments
+rules:
+  '@typescript-eslint/member-ordering':
+    - error
+  '@typescript-eslint/prefer-nullish-coalescing':
+    - error
+  '@typescript-eslint/prefer-readonly-parameter-types':
+    - off
+  import/order:
+    - error
+  no-nested-ternary:
+    - off
+  function-name/starts-with-verb:
+    - error
+    - whitelist: ['message', 'chat', 'context', 'messageRun', 'chatInputRun', 'contextMenuRun']
+      blacklist: []
+  functional/functional-parameters:
+    - off
+  functional/no-class:
+    - off
+  functional/no-expression-statement:
+    - error
+    - ignorePattern:
+        - on
+        - super
+        - client.login
+        - this
+        - logger
+        - console
+        - describe
+        - it
+        - test
+        - expect
+  functional/no-this-expression:
+    - off
+  functional/no-return-void:
+    - error
+    - ignoreImplicit: true
+  import/no-extraneous-dependencies:
+    - error
+    - devDependencies:
+      - '**/*esbuild.mjs'
+  import/extensions:
+    - error
+    - mjs:
+      - always
+  new-with-error/new-with-error:
+    - error
+  node/no-missing-import:
+    - off
+  node/no-unpublished-import:
+    - error
+    - allowModules:
+      - '@jest/types'
+      - 'esbuild'
+      - 'globby'
+  no-constructor-bind/no-constructor-bind:
+    - error
+  no-constructor-bind/no-constructor-state:
+    - error
+  no-default-error/no-default-error:
+    - error
+  no-secrets/no-secrets:
+    - error
+  # prefer-arrow-functions/prefer-arrow-functions:
+  #  - warn
+  #  - classPropertiesAllowed: true
+  #    disallowPrototype: true
+  #    returnStyle: implicit
+  #    singleReturnOnly: false
+  tsdoc/syntax:
+    - warn
+  unicorn/no-array-for-each:
+    - off
+  unicorn/filename-case:
+    - error
+    - case: kebabCase
+      ignore:
+        - (Only\.ts)
+  unicorn/prefer-top-level-await:
+    - off
+  write-good-comments/write-good-comments:
+    - warn
+  header/header:
+    - error
+    - block
+    - - ' SPDX-License-Identifier: MIT'
+      - 'Vegan Activists (VeganActivists@proton.me) '
+    - 2
+settings:
+  node:
+    tryExtensions:
+      - .js
+      - .json
+      - .node
+      - .ts
+      - .d.ts
+  import/resolver:
+    typescript:
+      alwaysTryTypes: true
+
